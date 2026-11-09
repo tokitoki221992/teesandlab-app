@@ -1,1 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEESANDLAB APPAREL | Labrador City, NL</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0a',
+                        cardbg: '#141414',
+                        accent: '#00f2fe'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #f3f4f6; }
+        .gothic-title { font-family: 'Cinzel', serif; }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-gray-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-gray-900 via-zinc-800 to-gray-900 text-cyan-400 text-xs sm:text-sm py-2 px-4 text-center font-medium border-b border-zinc-800 tracking-wider">
+        🔥 LABRADOR CITY LOCAL APPAREL & CUSTOM DTF PRINTING | CANADA-WIDE SHIPPING AVAILABLE
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-zinc-800 px-4 sm:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-zinc-700 via-zinc-400 to-zinc-900 p-[2px] flex items-center justify-center shadow-lg shadow-cyan-500/10">
+                <div class="w-full h-full bg-[#121212] rounded-full flex items-center justify-center text-cyan-400 gothic-title font-bold text-sm">
+                    TTL
+                </div>
+            </div>
+            <div>
+                <span class="gothic-title text-lg sm:text-xl font-bold tracking-widest bg-gradient-to-r from-white via-zinc-300 to-cyan-400 bg-clip-text text-transparent">TEESANDLAB</span>
+                <span class="block text-[10px] tracking-[0.25em] text-zinc-400 uppercase">Apparel • Lab. City, NL</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleCart()" class="relative bg-zinc-900 border border-zinc-700 hover:border-cyan-400 px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-2 transition">
+                <i data-lucide="shopping-bag" class="w-4 h-4 text-cyan-400"></i>
+                <span class="hidden sm:inline">Cart</span>
+                <span id="cart-count" class="bg-cyan-500 text-black text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden py-16 sm:py-24 px-4 sm:px-8 border-b border-zinc-900 bg-gradient-to-b from-zinc-950 to-[#0a0a0a]">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-zinc-900 border border-zinc-700 text-cyan-400 text-xs font-semibold tracking-widest uppercase mb-4">
+                PREMIUM STREETWEAR & CUSTOM PRINTS
+            </span>
+            <h1 class="gothic-title text-3xl sm:text-6xl font-extrabold tracking-wider mb-6 text-white">
+                BUILT IN <span class="text-cyan-400">LABRADOR CITY</span>
+            </h1>
+            <p class="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto mb-8">
+                High-durability streetwear, custom graphic tees, and professional Direct-to-Film (DTF) printing services shipped across Canada.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#shop" class="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-8 py-3 rounded-full transition shadow-lg shadow-cyan-500/20">
+                    Browse Collection
+                </a>
+                <a href="#custom" class="bg-zinc-900 border border-zinc-700 hover:border-cyan-400 text-white font-semibold px-8 py-3 rounded-full transition">
+                    Custom Print Order
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-12 flex-grow w-full">
+        
+        <!-- Product Section -->
+        <section id="shop" class="mb-16">
+            <div class="flex justify-between items-center mb-8 border-b border-zinc-800 pb-4">
+                <h2 class="gothic-title text-2xl font-bold tracking-wider text-white">FEATURED APPAREL</h2>
+                <div class="text-xs text-zinc-400">Prices in Canadian Dollars ($ CAD)</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="product-grid">
+                <!-- Products injected via JS -->
+            </div>
+        </section>
+
+        <!-- Custom Print Section -->
+        <section id="custom" class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 sm:p-10 mb-12">
+            <div class="max-w-2xl mx-auto text-center mb-8">
+                <h2 class="gothic-title text-2xl sm:text-3xl font-bold text-white mb-2">CUSTOM DTF & APPAREL QUOTE</h2>
+                <p class="text-zinc-400 text-sm">Have your own design or need team shirts? Fill out the details below and we'll process your order right here in Labrador City.</p>
+            </div>
+            <form onsubmit="submitCustomOrder(event)" class="max-w-xl mx-auto space-y-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Full Name</label>
+                    <input type="text" id="cust-name" required class="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white focus:border-cyan-400 outline-none" placeholder="Rocky Caida">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Email / Contact Number</label>
+                        <input type="text" id="cust-contact" required class="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white focus:border-cyan-400 outline-none" placeholder="rocky@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Garment Type</label>
+                        <select id="cust-garment" class="w-full bg-black border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white focus:border-cyan-400 outline-none">
+                            <option value="Heavyweight Tee">Heavyweight Tee ($32 CAD)</option>
+                            <option value="Streetwear Hoodie">Streetwear Hoodie ($65 CAD)</option>
+                            <option value="DTF Gang Sheet Print">DTF Gang Sheet Print ($25 CAD)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-1 font-semibold">Project Details / Instructions</label>
+                    <textarea id="cust-notes" rows="3" required class="w-full bg-black border border-zinc-700 rounded-lg p-4 text-sm text-white focus:border-cyan-400 outline-none" placeholder="Indicate sizes, quantities, and print placement (Front, Back, Left Chest)..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-lg transition shadow-lg shadow-cyan-500/20">
+                    Submit Custom Order Inquiry
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex justify-end">
+        <div class="w-full max-w-md bg-zinc-950 border-l border-zinc-800 h-full flex flex-col p-6 overflow-y-auto">
+            <div class="flex justify-between items-center pb-4 border-b border-zinc-800">
+                <h3 class="gothic-title text-lg font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-cyan-400"></i>
+                    <span>YOUR CART</span>
+                </h3>
+                <button onclick="toggleCart()" class="text-zinc-400 hover:text-white p-2">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cart-items" class="flex-grow py-6 space-y-4 overflow-y-auto">
+                <!-- Cart items populated via JS -->
+            </div>
+
+            <!-- Shipping Options -->
+            <div class="py-4 border-t border-zinc-800 space-y-3">
+                <label class="block text-xs uppercase tracking-wider text-zinc-400 font-semibold">Shipping / Delivery Method</label>
+                <select id="shipping-method" onchange="updateCartTotals()" class="w-full bg-black border border-zinc-700 rounded-lg p-3 text-sm text-white focus:border-cyan-400 outline-none">
+                    <option value="0">Free Local Pickup (Labrador City, NL) - $0.00 CAD</option>
+                    <option value="14">Canada Post Standard Shipping - $14.00 CAD</option>
+                    <option value="22">Canada Post Expedited Shipping - $22.00 CAD</option>
+                </select>
+            </div>
+
+            <!-- Summary Totals -->
+            <div class="pt-4 border-t border-zinc-800 space-y-2 text-sm">
+                <div class="flex justify-between text-zinc-400">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00 CAD</span>
+                </div>
+                <div class="flex justify-between text-zinc-400">
+                    <span>Shipping</span>
+                    <span id="cart-shipping">$0.00 CAD</span>
+                </div>
+                <div class="flex justify-between text-zinc-400">
+                    <span>HST (NL 15%)</span>
+                    <span id="cart-tax">$0.00 CAD</span>
+                </div>
+                <div class="flex justify-between text-white font-bold text-lg pt-2 border-t border-zinc-800">
+                    <span>Total</span>
+                    <span id="cart-total" class="text-cyan-400">$0.00 CAD</span>
+                </div>
+            </div>
+
+            <button onclick="checkout()" class="w-full mt-6 bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-lg transition shadow-lg shadow-cyan-500/20">
+                Proceed to Secure Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-8 px-4 sm:px-8 text-center text-xs text-zinc-400">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="gothic-title font-bold text-white tracking-wider text-sm">TEESANDLAB APPAREL</p>
+                <p class="mt-1">611 Bartlett Drive, Labrador City, NL, Canada</p>
+            </div>
+            <p>&copy; 2026 TEESANDLAB APPAREL. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        lucide.createIcons();
+
+        const products = [
+            { id: 1, name: "Barbed Wire Demon Heavyweight Tee", price: 32.00, category: "T-Shirts", image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80" },
+            { id: 2, name: "Gothic Monogram Streetwear Hoodie", price: 68.00, category: "Hoodies", image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop&q=80" },
+            { id: 3, name: "Custom DTF Gang Sheet (22\" x 24\")", price: 25.00, category: "DTF Prints", image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&auto=format&fit=crop&q=80" }
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition">
+                    <div class="h-64 overflow-hidden relative bg-black">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full border border-zinc-800">${p.category}</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-bold text-white text-base mb-1">${p.name}</h3>
+                            <p class="text-cyan-400 font-bold text-lg mb-4">$${p.price.toFixed(2)} CAD</p>
+                        </div>
+                        <button onclick="addToCart(${p.id})" class="w-full bg-zinc-800 hover:bg-cyan-500 hover:text-black text-white text-sm font-semibold py-2.5 rounded-xl transition">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = count;
+
+            const container = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-zinc-500 text-center py-8">Your cart is empty.</p>`;
+            } else {
+                container.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center justify-between bg-zinc-900 border border-zinc-800 p-3 rounded-xl">
+                        <div>
+                            <h4 class="text-sm font-bold text-white">${item.name}</h4>
+                            <p class="text-xs text-cyan-400">$${item.price.toFixed(2)} CAD x ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="changeQty(${index}, 1)" class="w-7 h-7 bg-zinc-800 rounded flex items-center justify-center text-white hover:bg-zinc-700">+</button>
+                            <button onclick="changeQty(${index}, -1)" class="w-7 h-7 bg-zinc-800 rounded flex items-center justify-center text-white hover:bg-zinc-700">-</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            updateCartTotals();
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shipping = parseFloat(document.getElementById('shipping-method').value);
+            const tax = (subtotal + shipping) * 0.15;
+            const total = subtotal + shipping + tax;
+
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)} CAD`;
+            document.getElementById('cart-shipping').innerText = `$${shipping.toFixed(2)} CAD`;
+            document.getElementById('cart-tax').innerText = `$${tax.toFixed(2)} CAD`;
+            document.getElementById('cart-total').innerText = `$${total.toFixed(2)} CAD`;
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert('Order placed successfully! We will contact you for payment and fulfillment details in Labrador City, NL.');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        function submitCustomOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const garment = document.getElementById('cust-garment').value;
+            alert(`Thank you, ${name}! Your custom quote request for ${garment} has been submitted to TEESANDLAB APPAREL.`);
+            e.target.reset();
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
 
